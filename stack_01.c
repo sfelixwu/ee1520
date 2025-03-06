@@ -11,12 +11,15 @@ baz
   
   void *ptr  = __builtin_extract_return_addr(__builtin_return_address(0));
   printf("ret_addr(0) = %p [%s]\n", ptr, __FUNCTION__);
+  printf("ret_function = %p \n", *((void **) ptr));
 
   void *ptr2 = __builtin_extract_return_addr(__builtin_return_address(1));
   printf("ret_addr(1) = %p [%s]\n", ptr2, __FUNCTION__);
+  printf("ret_function = %p \n", *((void **) ptr2));
 
   void *ptr3 = __builtin_extract_return_addr(__builtin_return_address(2));
   printf("ret_addr(2) = %p [%s]\n", ptr3, __FUNCTION__);
+  printf("ret_function = %p \n", *((void **) ptr3));
 
   return;
 }

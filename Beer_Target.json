@@ -1,0 +1,26 @@
+{
+    "discount" : 0.75,
+    "expiration" : "2020-06-36T18:34:24+0000",
+    "from" :
+    {
+	"core" : { "owner_vsID" : "8177752121943525221986898990725294075" },
+	"store" : "Nugget Market",
+	"vsID" : "56307055845342264413621510222129994875"
+    },
+    "issued" : "2020-06-29T18:34:24+0000",
+    "message" : "beer 25% off",
+    "product" :
+    {
+	"brand" : "Beck's",
+	"grp_id" : "13504",
+	"name" : "Beck's Dark Beer - 12 Pk",
+	"upc14" : "00082488124003"
+    },
+    "subject" : "coupon",
+    "to" :
+    {
+	"avatar_name" : "Felix Wu",
+	"core" : { "owner_vsID" : "112638136365359060811666331781839957994" },
+	"vsID" : "19001943559317188636759421571670037357"
+    }
+}

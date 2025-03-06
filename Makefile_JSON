@@ -1,0 +1,46 @@
+# Makefile for NCKU ee1520 Spring 2025
+# instructor, Shyhtsun Felix Wu (sfelixwu@gs.ncku.edu.tw)
+#
+
+CC = g++ -std=c++14
+
+# the followings might need to be modified for different platforms
+CFLAGS = -g -I/usr/include/jsoncpp
+
+# CFLAGS = -g -D_EE1520_DEBUG_ -I/usr/include/jsoncpp
+# CFLAGS = -g -Wall -Wstrict-prototypes
+# CFLAGS = -O3
+
+LDFLAGS = 	-L/opt/homebrew/lib					\
+		-ljsoncpp -lmicrohttpd -ljsonrpccpp-common		\
+		-ljsonrpccpp-server -lcurl -ljsonrpccpp-client 
+
+CORE_INCS =	JvTime.h ee1520_Common.h ee1520_Exception.h
+
+CORE_OBJS =	JvTime.o ee1520_JSON.o ee1520_Exception.o
+
+# rules to build
+
+all: 	ee1520parse
+
+#
+#
+
+ee1520parse.o:		ee1520parse.cpp $(CORE_INCS)
+	$(CC) -c $(CFLAGS) ee1520parse.cpp
+
+ee1520_JSON.o:		ee1520_JSON.cpp $(CORE_INCS)
+	$(CC) -c $(CFLAGS) ee1520_JSON.cpp
+
+ee1520_Exception.o:	ee1520_Exception.cpp $(CORE_INCS)
+	$(CC) -c $(CFLAGS) ee1520_Exception.cpp
+
+JvTime.o:		JvTime.cpp JvTime.h $(CORE_INCS)
+	$(CC) -c $(CFLAGS) JvTime.cpp
+
+ee1520parse:		$(CORE_OBJS) ee1520parse.o
+	$(CC) -o ee1520parse $(CORE_OBJS) ee1520parse.o $(LDFLAGS)
+
+clean:
+	rm -f	*.o *~ core ee1520parse
+
