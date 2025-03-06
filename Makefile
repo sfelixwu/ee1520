@@ -15,25 +15,30 @@ CFLAGS = -g
 
 # rules to build
 
+# (1)
 all: 	stack_executable
 
-#
-
+# (3) ==> these files exist
 stack_main.o:		stack_main.c stack_01.h
 	$(CC) -c $(CFLAGS) stack_main.c
 
+# (4)
 stack_foo.o:		stack_foo.c stack_01.h
 	$(CC) -c $(CFLAGS) stack_foo.c
 
+# (5)
 stack_bar.o:		stack_bar.c stack_01.h
 	$(CC) -c $(CFLAGS) stack_bar.c
 
+# (6)
 stack_baz.o:		stack_baz.c stack_01.h
 	$(CC) -c $(CFLAGS) stack_baz.c
 
+# (7)
 stack_address.o:	stack_address.c stack_01.h
 	$(CC) -c $(CFLAGS) stack_address.c
 
+# (2)
 stack_executable:	stack_main.o stack_foo.o stack_bar.o stack_baz.o stack_address.o
 	$(CC) stack_main.o stack_foo.o stack_bar.o stack_baz.o stack_address.o -o stack_executable
 
