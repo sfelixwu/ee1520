@@ -41,40 +41,11 @@ main
   if (f != NULL)
     {
       int i,j;
-      int iflag = 0;
-      for (i = 0; iflag == 0; i++)
-	{
-	  for (j = 0; j < (chunk_size / 8); j++)
-	    {
-	      unsigned char ccc[8];
-	      int cr, cw;
-
-	      cr = fread(ccc, 1, 8, f);
-	      if (cr == 0)
-		{
-		  chunk_number = (i+1);
-		  iflag = 1;
-		  break;
-		}
-	    }
-	}
-    }
-  else
-    {
-      printf("file {%s} can not be open...\n", argv[1]);
-      exit(1);
-    }
-  fclose(f);
-
-  f = fopen(argv[1], "r");
-  if (f != NULL)
-    {
-      int i,j;
       for (i = 0;; i++)
 	{
 	  fname = malloc(MAX_NAME);
 	  bzero((void *) fname, MAX_NAME);
-	  sprintf(fname, "%s.%d.%d.%032d", argv[2], atoi(argv[3]), chunk_number, i);
+	  sprintf(fname, "%s.%032d", argv[2], i);
 
 	  tf = fopen(fname, "w");
 	  if (tf != NULL)
@@ -99,6 +70,13 @@ main
 		  fclose(tf);
 		  free(fname);
 		  printf("done... [%d] chunks produced for %s\n", (i+1), argv[1]);
+
+		  sprintf(fname, "%s.meta", argv[2]);
+		  FILE * meta = fopen(fname, "w");
+		  fprintf(meta, "%d\n", i+1);
+		  fprintf(meta, "%d\n", chunk_size);
+		  fprintf(meta, "%s\n", argv[2]);
+		  fclose(meta);
 		  exit(0);
 		}
 
