@@ -68,7 +68,6 @@ main
 		{
 		  fclose(f);
 		  fclose(tf);
-		  free(fname);
 		  printf("done... [%d] chunks produced for %s\n", (i+1), argv[1]);
 
 		  sprintf(fname, "%s.meta", argv[2]);
@@ -77,6 +76,7 @@ main
 		  fprintf(meta, "%d\n", chunk_size);
 		  fprintf(meta, "%s\n", argv[2]);
 		  fclose(meta);
+		  free(fname);
 		  exit(0);
 		}
 
